@@ -1,0 +1,10 @@
+"use strict";(()=>{var e={};e.id=841,e.ids=[841],e.modules={5142:e=>{e.exports=require("dotenv")},145:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},5900:e=>{e.exports=require("pg")},6249:(e,r)=>{Object.defineProperty(r,"l",{enumerable:!0,get:function(){return function e(r,n){return n in r?r[n]:"then"in r&&"function"==typeof r.then?r.then(r=>e(r,n)):"function"==typeof r&&"default"===n?r:void 0}}})},8246:(e,r,n)=>{n.r(r),n.d(r,{config:()=>d,default:()=>l,routeModule:()=>p});var t={};n.r(t),n.d(t,{default:()=>u});var i=n(1802),o=n(7153),s=n(6249),a=n(8067),c=n.n(a);async function u(e,r){let n=`
+        CREATE TABLE IF NOT EXISTS tecnici (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(255) NOT NULL,
+        cognome VARCHAR(255) NOT NULL,
+        disponibile BOOLEAN NOT NULL,
+        esperienza VARCHAR(255) NOT NULL,
+        specializzazione VARCHAR(255) NOT NULL
+    );
+    `;try{let e=await c().connect();await e.query(n);let t=await e.query("SELECT * FROM tecnici");r.status(200).json(t.rows)}catch(e){console.error("Errore nella creazione del db o nella query:",e),r.status(500).json({error:"Errore interno del server"})}}let l=(0,s.l)(t,"default"),d=(0,s.l)(t,"config"),p=new i.PagesAPIRouteModule({definition:{kind:o.x.PAGES_API,page:"/api/tecnici/getTecnici",pathname:"/api/tecnici/getTecnici",bundlePath:"",filename:""},userland:t})},8067:(e,r,n)=>{Object.defineProperty(r,"__esModule",{value:!0});let t=n(5900);n(5142).config();let i=new t.Pool({user:process.env.RDS_USER,host:process.env.RDS_HOSTNAME,database:process.env.RDS_DB_NAME,password:process.env.RDS_PASSWORD,port:process.env.RDS_PORT});e.exports=i},7153:(e,r)=>{var n;Object.defineProperty(r,"x",{enumerable:!0,get:function(){return n}}),function(e){e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE"}(n||(n={}))},1802:(e,r,n)=>{e.exports=n(145)}};var r=require("../../../webpack-api-runtime.js");r.C(e);var n=r(r.s=8246);module.exports=n})();
