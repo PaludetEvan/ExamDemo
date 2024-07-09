@@ -1,1 +1,9 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/api/interventi/[id]":"pages/api/interventi/[id].js","/api/interventi/assegnaIntervento":"pages/api/interventi/assegnaIntervento.js","/api/interventi/getInterventi":"pages/api/interventi/getInterventi.js","/api/interventi/getInterventiAssegnati":"pages/api/interventi/getInterventiAssegnati.js","/api/interventi/setInterventi":"pages/api/interventi/setInterventi.js","/api/tecnici/[id]":"pages/api/tecnici/[id].js","/api/tecnici/getTecnici":"pages/api/tecnici/getTecnici.js","/api/tecnici/setTecnici":"pages/api/tecnici/setTecnici.js","/_document":"pages/_document.js","/404":"pages/404.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/api/interventi/setInterventi": "pages/api/interventi/setInterventi.js",
+  "/api/interventi/getInterventi": "pages/api/interventi/getInterventi.js",
+  "/api/tecnici/getTecnici": "pages/api/tecnici/getTecnici.js",
+  "/api/interventi/getInterventiAssegnati": "pages/api/interventi/getInterventiAssegnati.js"
+}
