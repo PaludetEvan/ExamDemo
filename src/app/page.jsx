@@ -1,5 +1,6 @@
 'use client'
 import error from "next/error";
+import { env } from "process";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
@@ -23,7 +24,7 @@ export default function Home() {
 
   const getTecnici = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/tecnici/getTecnici')
+      const response = await fetch(`${process.env.HOST_PREFIX}/api/tecnici/getTecnici`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -49,7 +50,7 @@ export default function Home() {
 
   const getInterventi = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/interventi/getInterventi')
+      const response = await fetch(`${process.env.HOST_PREFIX}/api/interventi/getInterventi`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -75,7 +76,7 @@ export default function Home() {
 
   const getInterventiAssegnati = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/interventi/getInterventiAssegnati')
+      const response = await fetch(`${process.env.HOST_PREFIX}/api/interventi/getInterventiAssegnati`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -100,7 +101,7 @@ export default function Home() {
 
   const deleteIntervento = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/interventi/${id}`, {
+      const response = await fetch(`${process.env.HOST_PREFIX}/api/interventi/${id}`, {
         method: 'DELETE'
       });
 
@@ -124,7 +125,7 @@ export default function Home() {
     console.log(data)
 
     try {
-      const response = await fetch(`http://localhost:3000/api/interventi/assegnaIntervento`, {
+      const response = await fetch(`${process.env.HOST_PREFIX}/api/interventi/assegnaIntervento`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
