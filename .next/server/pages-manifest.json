@@ -1,9 +1,5 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/api/interventi/setInterventi": "pages/api/interventi/setInterventi.js",
-  "/api/interventi/getInterventi": "pages/api/interventi/getInterventi.js",
-  "/api/tecnici/getTecnici": "pages/api/tecnici/getTecnici.js",
-  "/api/interventi/getInterventiAssegnati": "pages/api/interventi/getInterventiAssegnati.js"
+  "/_document": "pages/_document.js"
 }

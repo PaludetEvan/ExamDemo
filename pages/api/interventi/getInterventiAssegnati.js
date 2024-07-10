@@ -24,17 +24,22 @@ export default async function Handler(req, res) {
         CREATE TABLE IF NOT EXISTS interventi_assegnati (
         id SERIAL PRIMARY KEY,
         intervento_id INTEGER NOT NULL REFERENCES interventi(id),
-        tecnico INTEGER NOT NULL REFERENCES tecnici(id),
+        operatore_id INTEGER NOT NULL REFERENCES tecnici(id),
         data_intervento DATE NOT NULL,
         ora_intervento TIME NOT NULL
-);
+    );
     `
 
     try {
         let client = await pool.connect();
         await client.query(queryBuilder)
         const result = await client.query(querySelect)
-        res.status(200).json(result.rows);
+        if(result.rows === 0) {
+            console.error('nessun dato trovato')
+        } else {
+            res.status(200).json(result.rows);
+
+        }
 
 
     } catch (error) {

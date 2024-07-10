@@ -1,15 +1,24 @@
 'use client'
+
 import error from "next/error";
 import { env } from "process";
+require('dotenv').config()
+
+
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
+  const local = process.env.REACT_APP_LOCALHOST_PREFIX
+  const hosted = process.env.HOST_PREFIX
+
+  console.log('local : ', process.env.REACT_APP_LOCALHOST_PREFIX)
+
   const [tecnici, setTecnici] = useState([{}])
   const [interventi, setInterventi] = useState([{}])
   const [interventiAssegnati, setInterventiAssegnati] = useState([{}])
 
   const [operatore_id_num, setTecId] = useState()
-  const [data_intervento, setDate] = useState()
+  const [data_intervento2, setDate] = useState()
   const [ora_intervento, setTime] = useState()
   const [intervento_id, setIntId] = useState()
 
@@ -24,7 +33,7 @@ export default function Home() {
 
   const getTecnici = async () => {
     try {
-      const response = await fetch(`https://exam-demo-sigma.vercel.app/api/tecnici/getTecnici`)
+      const response = await fetch(`https://main.d2ex578o8vvlmp.amplifyapp.com/api/tecnici/getTecnici`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -50,7 +59,7 @@ export default function Home() {
 
   const getInterventi = async () => {
     try {
-      const response = await fetch(`https://exam-demo-sigma.vercel.app/api/interventi/getInterventi`)
+      const response = await fetch(`https://main.d2ex578o8vvlmp.amplifyapp.com/api/interventi/getInterventi`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -76,7 +85,7 @@ export default function Home() {
 
   const getInterventiAssegnati = async () => {
     try {
-      const response = await fetch(`https://exam-demo-sigma.vercel.app/api/interventi/getInterventiAssegnati`)
+      const response = await fetch(`https://main.d2ex578o8vvlmp.amplifyapp.com/api/interventi/getInterventiAssegnati`)
       console.log('Response:', response);
 
       if (response.ok) {
@@ -101,7 +110,7 @@ export default function Home() {
 
   const deleteIntervento = async (id) => {
     try {
-      const response = await fetch(`https://exam-demo-sigma.vercel.app/api/interventi/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/interventi/${id}`, {
         method: 'DELETE'
       });
 
@@ -121,11 +130,17 @@ export default function Home() {
   const assegnaIntervento = async (e) => {
     e.preventDefault()
     const operatore_id = parseInt(operatore_id_num)
+    const data_intervento = new Date(data_intervento2).toLocaleDateString('en-US', {
+      day: 'numeric',
+      month:'short',
+      year:'numeric'
+
+    })
     const data = { intervento_id, operatore_id, data_intervento, ora_intervento }
     console.log(data)
 
     try {
-      const response = await fetch(`https://exam-demo-sigma.vercel.app/api/interventi/assegnaIntervento`, {
+      const response = await fetch(`https://main.d2ex578o8vvlmp.amplifyapp.com/api/interventi/assegnaIntervento`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -155,9 +170,9 @@ export default function Home() {
                 {/* Campo per la data */}
                 <input
                   type="date"
-                  id="data_intervento"
-                  name="data_intervento"
-                  value={data_intervento}
+                  id="data_intervento2"
+                  name="data_intervento2"
+                  value={data_intervento2}
                   onChange={(e) => setDate(e.target.value)}
                   required
                 />
